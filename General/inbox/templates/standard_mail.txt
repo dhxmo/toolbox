@@ -1,0 +1,7 @@
+Hi, hope you're well.
+
+{msg_body}
+
+Thank you for your time.
+Regards,
+Dhruv

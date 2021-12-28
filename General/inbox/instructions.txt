@@ -1,0 +1,21 @@
+to read from inbox:
+	- update email and password in the script
+	- update total emails to be seen - total_emails (default is 3)
+	- open terminal and type
+		python inbox.py
+
+
+to send an email:
+	- open terminal in PWD and type
+		$ python send.py
+	- enter inputs and mail will be sent
+
+
+to send a template mail:
+    - open terminal in PWD and type
+           $ python send_template.py
+    - use a template from the templates folder or create a new for yourself
+    - enter qualifying details
+    - for "Enter template you'd like to use:", type file name in templates
+    - for "Which property would you like to edit?" ex- in standard_mail.txt we use msg.body
+    - enter value that must come into the template
