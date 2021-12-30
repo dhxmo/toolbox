@@ -6,60 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>679</width>
-    <height>417</height>
+    <width>655</width>
+    <height>329</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Bulk Renamer</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="3">
-    <widget class="QLineEdit" name="dirEdit">
+   <item row="5" column="5">
+    <widget class="QLabel" name="label_3">
      <property name="minimumSize">
       <size>
        <width>20</width>
        <height>20</height>
       </size>
      </property>
-     <property name="placeholderText">
-      <string>Enter directory...</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3" colspan="2">
-    <widget class="QPushButton" name="loadFilesBtn">
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+       <underline>false</underline>
+       <kerning>false</kerning>
+      </font>
      </property>
      <property name="text">
-      <string>&amp;Load Files</string>
-     </property>
-     <property name="shortcut">
-      <string>Ctrl+L</string>
+      <string>Renamed Files</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="2" colspan="3">
-    <widget class="QListView" name="renamedFiles">
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>10000000</width>
-       <height>10000000</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="4">
+   <item row="1" column="0" colspan="6">
     <widget class="QLineEdit" name="prefixEdit">
      <property name="minimumSize">
       <size>
@@ -72,19 +48,16 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
-    <widget class="QListView" name="srcFiles">
+   <item row="0" column="0" colspan="4">
+    <widget class="QLineEdit" name="dirEdit">
      <property name="minimumSize">
       <size>
-       <width>10</width>
+       <width>20</width>
        <height>20</height>
       </size>
      </property>
-     <property name="maximumSize">
-      <size>
-       <width>10000000</width>
-       <height>10000000</height>
-      </size>
+     <property name="placeholderText">
+      <string>Enter directory...</string>
      </property>
     </widget>
    </item>
@@ -109,43 +82,22 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="4">
-    <widget class="QLabel" name="label_3">
+   <item row="6" column="5">
+    <widget class="QListWidget" name="renamedFiles"/>
+   </item>
+   <item row="6" column="0">
+    <widget class="QListWidget" name="srcFiles"/>
+   </item>
+   <item row="6" column="1">
+    <widget class="QProgressBar" name="progressBar">
      <property name="minimumSize">
       <size>
        <width>20</width>
        <height>20</height>
       </size>
      </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-       <underline>false</underline>
-       <kerning>false</kerning>
-      </font>
-     </property>
-     <property name="text">
-      <string>Renamed Files</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QLabel" name="extensionLabel">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>15</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>*.jpg</string>
+     <property name="value">
+      <number>0</number>
      </property>
     </widget>
    </item>
@@ -168,16 +120,19 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="1">
-    <widget class="QProgressBar" name="progressBar">
+   <item row="0" column="4" colspan="2">
+    <widget class="QPushButton" name="loadFilesBtn">
      <property name="minimumSize">
       <size>
        <width>20</width>
        <height>20</height>
       </size>
      </property>
-     <property name="value">
-      <number>0</number>
+     <property name="text">
+      <string>&amp;Load Files</string>
+     </property>
+     <property name="shortcut">
+      <string>Ctrl+L</string>
      </property>
     </widget>
    </item>
