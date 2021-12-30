@@ -40,8 +40,6 @@ class Window(QWidget, Ui_Window):
         self.loadFilesBtn.clicked.connect(self.load_files)
 
     def load_files(self):
-        self.renamedFiles.clearSelection()
-
         # set initializing directory
         if self.dirEdit.text():
             init_dir = self.dirEdit.text()
@@ -68,8 +66,9 @@ class Window(QWidget, Ui_Window):
             for file in files[0]:
                 # append file paths to _files
                 self._files.append(Path(file))
+                filename = file.split("/")
                 # add files to srcFiles for GUI
-                self.srcFiles.addItem(file)
+                self.srcFiles.addItem(".../" + filename[-1])
 
             # update file count
             self._filesCount = len(self._files)

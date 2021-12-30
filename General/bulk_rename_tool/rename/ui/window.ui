@@ -6,62 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>655</width>
-    <height>329</height>
+    <width>306</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Bulk Renamer</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="5" column="5">
-    <widget class="QLabel" name="label_3">
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-       <underline>false</underline>
-       <kerning>false</kerning>
-      </font>
-     </property>
-     <property name="text">
-      <string>Renamed Files</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="6">
-    <widget class="QLineEdit" name="prefixEdit">
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="placeholderText">
-      <string>Enter filename prefix here</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="4">
-    <widget class="QLineEdit" name="dirEdit">
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="placeholderText">
-      <string>Enter directory...</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QLabel" name="label_2">
      <property name="minimumSize">
       <size>
@@ -71,9 +24,12 @@
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <family>Jamrul</family>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
        <underline>false</underline>
+       <strikeout>false</strikeout>
        <kerning>false</kerning>
       </font>
      </property>
@@ -82,13 +38,19 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="5">
-    <widget class="QListWidget" name="renamedFiles"/>
+   <item>
+    <widget class="QListWidget" name="srcFiles">
+     <property name="font">
+      <font>
+       <family>Jamrul</family>
+       <pointsize>8</pointsize>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+    </widget>
    </item>
-   <item row="6" column="0">
-    <widget class="QListWidget" name="srcFiles"/>
-   </item>
-   <item row="6" column="1">
+   <item>
     <widget class="QProgressBar" name="progressBar">
      <property name="minimumSize">
       <size>
@@ -96,18 +58,124 @@
        <height>20</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <family>Jamrul</family>
+       <pointsize>8</pointsize>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
      <property name="value">
       <number>0</number>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item>
+    <widget class="QLineEdit" name="dirEdit">
+     <property name="minimumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Jamrul</family>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>Enter directory...</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="loadFilesBtn">
+     <property name="minimumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Jamrul</family>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-color: rgb(233, 185, 110);
+background-color: rgb(233, 185, 110);</string>
+     </property>
+     <property name="text">
+      <string>&amp;Load Files</string>
+     </property>
+     <property name="shortcut">
+      <string>Ctrl+L</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="prefixEdit">
+     <property name="minimumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Jamrul</family>
+       <pointsize>8</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+     <property name="placeholderText">
+      <string>Enter files prefix here</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="renameFilesBtn">
      <property name="minimumSize">
       <size>
        <width>20</width>
        <height>20</height>
       </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Jamrul</family>
+       <pointsize>8</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(233, 185, 110);</string>
      </property>
      <property name="text">
       <string>Rename</string>
@@ -117,22 +185,6 @@
      </property>
      <property name="default">
       <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="4" colspan="2">
-    <widget class="QPushButton" name="loadFilesBtn">
-     <property name="minimumSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>&amp;Load Files</string>
-     </property>
-     <property name="shortcut">
-      <string>Ctrl+L</string>
      </property>
     </widget>
    </item>
