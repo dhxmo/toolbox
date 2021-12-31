@@ -1,10 +1,11 @@
 ## Load up the GUI using terminal
 
 ```commandline
-python renamer.py
+cd ./dist/BulkRename/
+./BulkRename
 ```
 
 ## Shortcuts:
-- Ctrl + L to load files
+- Ctrl + L to Load files
 
-- Enter to rename files
+- Enter to Rename files

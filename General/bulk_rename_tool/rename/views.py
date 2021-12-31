@@ -14,6 +14,7 @@ from .ui.window import Ui_Window
 # different file types to select from
 FILTERS = ";;".join(
     (
+        "All Files (*.*)",
         "PNG Files (*.png)",
         "JPEG Files (*.jpeg)",
         "JPG Files (*.jpg)",
@@ -78,7 +79,7 @@ class Window(QWidget, Ui_Window):
         self.prefixEdit.textChanged.connect(self._ready_stateupdate)
 
     # enable rename files button once required prefix input has been provided
-    def _read_stateupdate(self):
+    def _ready_stateupdate(self):
         if self.prefixEdit.text():
             self.renameFilesBtn.setEnabled(True)
         else:
