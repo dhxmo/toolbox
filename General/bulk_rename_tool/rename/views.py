@@ -66,8 +66,11 @@ class Window(QWidget, Ui_Window):
         # connect thread start to function
         self._thread.started.connect(self._renamer.rename_files)
 
-        # connect signal with popping files off the stack
+        # connect renaming signal with popping files off the stack
         self._renamer.renamed_file_signal.connect(self._update_state_on_rename)
+        # connect progress signal with progress bar update function
+        # progressed_signal provides the file number being processed to _update_progress_bar
+        self._renamer.progressed_signal.connect(self._update_progressbar)
 
         # clean up
         # quit thread once renaming is done
@@ -81,9 +84,15 @@ class Window(QWidget, Ui_Window):
         self._thread.start()
 
     def _update_state_on_rename(self):
+        # pop file off the deque
         self._files.popleft()
+        # takeItem - Removes and returns the item from the given row in the list widget
         self.srcFiles.takeItem(0)
 
+    # calculate percentage and update GUI
+    def _update_progressbar(self, file_number):
+        progress_percent = int(file_number / self._filesCount * 100)
+        self.progressBar.setValue(progress_percent)
 
     def load_files(self):
         # set initializing directory

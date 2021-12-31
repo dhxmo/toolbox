@@ -35,7 +35,7 @@ class Renamer(QObject):
             )
             # rename file
             file.rename(new_file)
-            time.sleep(0.01)
+            time.sleep(0.03)
 
             # emit signals to GUI
             self.progressed_signal.emit(number)
