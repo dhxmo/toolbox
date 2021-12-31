@@ -19,7 +19,19 @@ FILTERS = ";;".join(
         "JPG Files (*.jpg)",
         "GIF Files (*.gif)",
         "Text Files (*.txt)",
-        "Python Files (*.py)",
+        "Excel Files (*.xlsx)",
+        "Legacy Word Files (*.doc)",
+        "Word Files (*.docx)",
+        "Log Files (*.log)",
+        "OpenDocument Text Files (*.odt)",
+        "Rich Text Format Files (*.rtf)",
+        "Comma-Separated Values Files (*.csv)",
+        "XML Files (*.xml)",
+        "MP3 Files (*.mp3)",
+        "WAVE Files (*.wav)",
+        "MPEG-4 Files (*.mp4)",
+        "Apple QuickTime Files (*.mov)",
+        "Audio Video Interleave Files (*.avi)",
     )
 )
 
@@ -39,16 +51,47 @@ class Window(QWidget, Ui_Window):
 
     # _ for non-public methods -> not to be used outside the class
     def _setup_ui(self):
+        # access setupUi method of Ui_Window class
         self.setupUi(self)
+        # call from within UI
+        self._no_file_stateupdate()
+
+    # when there's no files to be renamed
+    def _no_file_stateupdate(self):
+        # updates files count to 0
+        self._filesCount = len(self._files)
+        # enable load files button
+        self.loadFilesBtn.setEnabled(True)
+        # disable rename files button
+        self.renameFilesBtn.setEnabled(False)
+        # disable prefix input if no files to be renamed
+        self.prefixEdit.clear()
+        self.prefixEdit.setEnabled(False)
 
     def _connect_signals_slots(self):
-        # connect btn's click event to load files method
+        # connect button's click event to load files method
         self.loadFilesBtn.clicked.connect(self.load_files)
         # connect rename files btn to rename files method
         self.renameFilesBtn.clicked.connect(self.rename_files)
+        # connect user input in prefixEdit to ready state update
+        # textChanged -> QLineEdit signal emitted whenever the text changes
+        self.prefixEdit.textChanged.connect(self._ready_stateupdate)
+
+    # enable rename files button once required prefix input has been provided
+    def _read_stateupdate(self):
+        if self.prefixEdit.text():
+            self.renameFilesBtn.setEnabled(True)
+        else:
+            self.renameFilesBtn.setEnabled(False)
 
     def rename_files(self):
         self._run_renamer_thread()
+        self._busy_stateupdate()
+
+    # disable buttons if app is busy
+    def _busy_stateupdate(self):
+        self.loadFilesBtn.setEnabled(False)
+        self.renameFilesBtn.setEnabled(False)
 
     def _run_renamer_thread(self):
         # retrieve prefix from input
@@ -71,6 +114,9 @@ class Window(QWidget, Ui_Window):
         # connect progress signal with progress bar update function
         # progressed_signal provides the file number being processed to _update_progress_bar
         self._renamer.progressed_signal.connect(self._update_progressbar)
+
+        # connect finished signal with no file update method to update GUI on process finish
+        self._renamer.finished_signal.connect(self._no_file_stateupdate)
 
         # clean up
         # quit thread once renaming is done
@@ -127,3 +173,8 @@ class Window(QWidget, Ui_Window):
 
             # update file count
             self._filesCount = len(self._files)
+            # enable prefix input once files have been loaded
+            self._files_loaded_stateupdate()
+
+    def _files_loaded_stateupdate(self):
+        self.prefixEdit.setEnabled(True)
