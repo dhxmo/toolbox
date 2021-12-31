@@ -1,8 +1,14 @@
 # GUI - main window
 
+# QThread -> manage worker threads
+from PyQt5.QtCore import QThread
 from collections import deque
 from pathlib import Path
 from PyQt5.QtWidgets import QWidget, QFileDialog
+
+# import renamer class
+from .rename import Renamer
+# import GUI class
 from .ui.window import Ui_Window
 
 # different file types to select from
@@ -38,6 +44,46 @@ class Window(QWidget, Ui_Window):
     def _connect_signals_slots(self):
         # connect btn's click event to load files method
         self.loadFilesBtn.clicked.connect(self.load_files)
+        # connect rename files btn to rename files method
+        self.renameFilesBtn.clicked.connect(self.rename_files)
+
+    def rename_files(self):
+        self._run_renamer_thread()
+
+    def _run_renamer_thread(self):
+        # retrieve prefix from input
+        prefix = self.prefixEdit.text()
+
+        # new QThread object to offload process
+        self._thread = QThread()
+
+        # instantiate Renamer
+        # turn files into tuple to prevent thread from modifying underlying deque on main thread
+        self._renamer = Renamer(files=tuple(self._files), prefix=prefix)
+        # move renaming to instantiated thread
+        self._renamer.moveToThread(self._thread)
+
+        # connect thread start to function
+        self._thread.started.connect(self._renamer.rename_files)
+
+        # connect signal with popping files off the stack
+        self._renamer.renamed_file_signal.connect(self._update_state_on_rename)
+
+        # clean up
+        # quit thread once renaming is done
+        self._renamer.finished_signal.connect(self._thread.quit)
+        # schedule objects for later deletion
+        # The object will be deleted when control returns to the event loop
+        self._renamer.finished_signal.connect(self._renamer.deleteLater)
+        # delete thread only after renaming is done
+        self._thread.finished.connect(self._renamer.deleteLater)
+        # start worker thread
+        self._thread.start()
+
+    def _update_state_on_rename(self):
+        self._files.popleft()
+        self.srcFiles.takeItem(0)
+
 
     def load_files(self):
         # set initializing directory
