@@ -4,7 +4,7 @@ A collection of tools to automate and ease life
 
 ## License
 
-[MIT](https://rem.mit-license.org)
+[MIT](https://mit-license.org/)
 
 # Version
 
