@@ -1,6 +1,6 @@
 # TOOLBOX
 
-A collection of tools to automate and ease life
+A collection of tools to automate and ease life. These tools have been built using tutorials from across the web. I'll leave the necessary attributions where necessary.
 
 ## License
 

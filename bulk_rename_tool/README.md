@@ -9,3 +9,6 @@ cd ./dist/BulkRename/
 - Ctrl + L to Load files
 
 - Enter to Rename files
+
+
+### Attribution: https://realpython.com/bulk-file-rename-tool-python/
