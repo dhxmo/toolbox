@@ -19,4 +19,4 @@ A collection of tools to automate and ease life. These tools have been built usi
 5. Create a new Pull Request
 
 ## Contributors
-- [darkMatterChimpanzee](https://github.com/darkMatterChimpanzee) Dhruv Mohapatra
+- [zdhxmo](https://github.com/zdhxmo) Dhruv Mohapatra
