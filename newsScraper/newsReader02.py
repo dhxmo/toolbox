@@ -18,37 +18,24 @@ load_dotenv()
 # email content placeholder
 content = ''
 
-urls_dict = {
-    'telecom': 'https://economictimes.indiatimes.com/industry/telecom',
-    'transport': 'https://economictimes.indiatimes.com/industry/transportation',
-    'services': 'https://economictimes.indiatimes.com/industry/services',
-    'biotech': 'https://economictimes.indiatimes.com/industry/healthcare/biotech',
-    'svs': 'https://economictimes.indiatimes.com/industry/indl-goods/svs',
-    'energy': 'https://economictimes.indiatimes.com/industry/energy',
-    'consumer_products': 'https://economictimes.indiatimes.com/industry/cons-products',
-    'finance': 'https://economictimes.indiatimes.com/industry/banking/finance',
-    'automobiles': 'https://economictimes.indiatimes.com/industry/auto'
-}
-
 
 def extract_news():
-    todays_url = random.choice(list(urls_dict.values()))
+    todays_url = 'https://timesofindia.indiatimes.com/explainers'
     response = requests.get(todays_url)
     content = response.content
     soup = BeautifulSoup(content, 'html.parser')
-    headline_data = soup.find("ul", class_="list1")
+    headline_data = soup.find("div", class_="pE3Ep").find('ul')
 
     email_body = ''
 
-    email_body += 'Good Morning kiddo. Today we read Economics Times. Heres whats happening today: <br />\n <br />\n'
-
+    email_body += 'Good Morning kiddo. Today we read Times Of India Explainers. Try to digest ' \
+                  'it without letting it affect your opinions much: <br />\n <br />\n'
     all_news = []
 
-    url = 'https://economictimes.indiatimes.com'
+    # iterate over elements
     for i, news in enumerate(headline_data.find_all("li")):
         body = ''
-        link = '%s%s' % (url, news.a.get('href'))
-        body += '<a href="' + link + '">' \
+        body += '<a href="' + news.a.get('href') + '">' \
                 + news.text + '</a>' + '<br />\n' + '<br />\n'
         # add items to a list
         all_news.append(body)
